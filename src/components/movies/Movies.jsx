@@ -12,7 +12,7 @@ const Movies = ({data}) => {
             <img className='w-full h-full object-cover rounded-[10px]' src={import.meta.env.VITE_IMAGE_URL + movie.poster_path} alt="" />
           </Link>
           <div className='p-1.5'>
-            <h3 title={movie.title} className='text-2xl text-white font-medium line-clamp-1'>{movie.title}</h3>
+            <h3 title={movie.title} className='text-2xl text-white light: text-black font-medium line-clamp-1'>{movie.title}</h3>
             <p className='text-yellow-500 font-medium'>{movie.vote_average}</p>
           </div>
         </div>

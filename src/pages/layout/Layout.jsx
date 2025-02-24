@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <>
         <Header/>
-        <main className='mb-56'>
+        <main className='mb-56 min-h-screen bg-white text-black dark:bg-black py-5'>
             <Outlet/>
         </main>
         <Footer/>

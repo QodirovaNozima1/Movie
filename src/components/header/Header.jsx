@@ -1,6 +1,7 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import "./Header.css"
+import { ConfigProvider, Segmented, Select } from 'antd'
 import navlogo1 from "../../assets/Logo (3).png"
 import navlogo2 from "../../assets/Logo (4).png"
 import navlogo3 from "../../assets/nav1.png"
@@ -9,16 +10,35 @@ import navlogo5 from "../../assets/nav3.png"
 import navlogo6 from "../../assets/nav4.png"
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
-import { MdOutlineWbSunny } from "react-icons/md";
-import { IoMoonOutline } from "react-icons/io5";
+import {SunOutlined, MoonOutlined} from "@ant-design/icons"
 import { Switch } from "antd";
 
 const Header = () => {
+  const [dark, setDark] = useState(() => localStorage.getItem('theme') == 'dark')
+    const handleChange = (value) => {
+        console.log(value)
+    }
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  function myFunction() {
-    var element = document.body;
-    element.classList.toggle("light-mode");
-  }
+  const handleDarkMode = (value) => {
+    if(value === 'dark'){
+        document.documentElement.classList.add("dark")
+        localStorage.setItem('theme', 'dark')
+        setDark(true)
+    }else{
+        document.documentElement.classList.remove('dark')
+        localStorage.removeItem('theme')
+        setDark(false)
+    }
+}
+
+useLayoutEffect(() => {
+    if(localStorage.getItem("theme") == 'dark'){
+        document.documentElement.classList.add("dark")
+        setDark(true)
+    }
+}, [])
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -57,9 +77,9 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link className='hover:text-[#C61F1F] ease-in-out flex flex-col items-center' to={"/detail"}>
+                <Link className='hover:text-[#C61F1F] ease-in-out flex flex-col items-center' to={"/saved"}>
                   <img src={navlogo5} alt="" />
-                  <p className='text-[12px]  text-[#d8d5d5] font-medium'>Detail</p>
+                  <p className='text-[12px]  text-[#d8d5d5] font-medium'>Saved</p>
                 </Link>
               </li>
               <li>
@@ -76,7 +96,9 @@ const Header = () => {
               <option value="English">English</option>
               <option value="Uzb">Uzb</option>
             </select>
-            <Switch onClick={myFunction()} checkedChildren="light"  unCheckedChildren="dark" defaultChecked />
+            <div className='flex items-center gap-5'>                        
+              <Segmented defaultValue={localStorage.getItem("theme") == 'dark' ? 'dark' : 'light'} onChange={(value) => handleDarkMode(value)} size={'medium'} shape="round" options={[ { value: 'light', icon: <SunOutlined /> }, { value: 'dark', icon: <MoonOutlined /> }, ]} />
+                    </div>
           </div>
           <div onClick={toggleMenu} className="navbar__menu text-2xl">
             <AiOutlineMenuUnfold />
