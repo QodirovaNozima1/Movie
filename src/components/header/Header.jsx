@@ -47,7 +47,7 @@ useLayoutEffect(() => {
   const links = ["Каталог", "Доставка", " Условия", "Контакты"]
   const number = ["+ 375 736 463"]
   return (
-    <header id='header' className={`header h-[70px]  flex gap-5 p-5 items-center mt-[12px] ${bg}`}>
+    <header id='header' className={`header h-[70px]  flex gap-5 p-5 items-center${bg}`}>
       <div className='container  justify-between items-center'>
         <nav className="navbar bg-inherit py-5 flex items-center justify-between">
           <div className="flex gap-1 items-center navbar__img justify-center">

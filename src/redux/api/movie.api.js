@@ -21,8 +21,15 @@ const extendedApi = mainApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    getGenres: build.query({
+      query: () => ({
+        url: `/genre/movie/list`,
+        method: "GET",
+      }),
+    }),
+    
   }),
   overrideExisting: false,
 })
 
-export const { useGetMoviesQuery, useGetSingleMovieQuery, useGetSingleMovieImagesQuery } = extendedApi
+export const { useGetMoviesQuery, useGetSingleMovieQuery, useGetSingleMovieImagesQuery, useGetGenresQuery } = extendedApi
