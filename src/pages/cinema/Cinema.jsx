@@ -59,7 +59,7 @@ const Cinema = () => {
               className={`px-4 py-2 rounded-full border whitespace-nowrap cursor-pointer select-none transition button ${
                 isActive
                   ? "bg-red-600 text-white border-red-600 "
-                  : "bg-gray-200 text-gray-800 border-gray-300 hover:bg-gray-300"
+                  : "bg-inherit text-white border-none"
               }`}
             >
               {isActive ? (
